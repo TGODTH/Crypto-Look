@@ -4,6 +4,7 @@
     <div class="grid-item grid-header">Price</div>
     <div class="grid-item grid-header">Total</div>
     <div class="grid-item grid-header">USDT Value</div>
+    <div class="grid-item grid-header">Edit</div>
     <Row
       v-for="data in datas"
       :key="data.fullName"
@@ -24,22 +25,26 @@ export default {
 
 <style>
 .table-container {
-    margin: 0 auto;
-    padding: 20px 0;
+  margin: 0 auto;
+  padding: 20px 0;
   display: grid;
-  grid-template-columns: 1fr repeat(3, 2fr);
+  grid-template-columns: 1fr repeat(3, 2fr) auto;
+  /* align-items: center; */
 }
-.grid-header{
-    font-weight: 600;
-    font-size: 1.2rem;
+.grid-header {
+  font-weight: 600;
+  font-size: 1.2rem;
 }
-.grid-item{
-    padding: 6px;
-    border: 0.5px solid #e6e6e6;
+.grid-item {
+  padding: 6px;
+  border: 0.5px solid #e6e6e6;
+  display: flex;
+  flex-direction: column;;
+  justify-content: center;
 }
-.fullname{
-    font-size: 0.8rem;
-    font-weight: 300;
-    color:#4b4b4b
+.fullname {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #4b4b4b;
 }
 </style>

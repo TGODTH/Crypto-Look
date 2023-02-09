@@ -1,12 +1,12 @@
 <template>
   <main>
-      <PortTable :datas="{ ...data }"></PortTable>
-      <div class="button-box">
-          <button @click="Fdata">Fetch data</button>
-          <button @click="togglePrompt">Add data</button>
-      </div>
+    <PortTable :datas="{ ...data }"></PortTable>
+    <div class="button-box">
+      <button @click="fetchData">Fetch data</button>
+      <button @click="togglePrompt">Add data</button>
+    </div>
   </main>
-  <PromptBox @submit="addData" @close="togglePrompt" v-if="openedPrompt"/>
+  <PromptBox @submit="addData" @close="togglePrompt" v-if="openedPrompt" />
 </template>
 
 <script>
@@ -19,38 +19,22 @@ export default {
   data() {
     return {
       link: "https://api.binance.com/api/v3/ticker/price?",
-      port: [
-        {
-          nickName: "BTC",
-          fullName: "BTCUSDT",
-          amount: 2.241352552,
-        },
-        {
-          nickName: "ETH",
-          fullName: "ETHUSDT",
-          amount: 12.31536,
-        },
-        {
-          nickName: "LTC",
-          fullName: "LTCUSDT",
-          amount: 2376859135.235463,
-        },
-      ],
+      port: [],
       data: [],
       openedPrompt: false,
     };
   },
   created() {
-    this.Fdata();
+    this.port = JSON.parse(localStorage.getItem("port")) || [];
+    if (this.port !== []) {
+      this.fetchData();
+    }
   },
   methods: {
-      togglePrompt() {
-          console.log(this.openedPrompt);
-          console.log(!this.openedPrompt);
-        console.log("click ");
-        this.openedPrompt =!this.openedPrompt;
+    togglePrompt() {
+      this.openedPrompt = !this.openedPrompt;
     },
-    Fdata() {
+    fetchData() {
       const coinsName = this.port.map((port) => {
         return port.fullName;
       });
@@ -86,27 +70,39 @@ export default {
       }
     },
     addData(newCoin) {
-      if (this.port.find((coin) => coin.fullName === newCoin.fullName)) {
+      const foundCoin = this.port.find((coin) => {
+        return coin.fullName === newCoin.fullName;
+      });
+      if (foundCoin) {
         console.log("existing");
         return;
+      } else {
+        this.port.push({ ...newCoin });
+        this.fetchData();
       }
-      this.port.push(newCoin);
-      this.Fdata();
     },
     removeData(fName) {
       this.port = this.port.filter(
         (coin) => coin.fullName !== fName.toUpperCase
       );
-      this.Fdata();
+      this.fetchData();
     },
     changeData(editCoin) {
       this.port = this.port.map((coin) => {
-        if (fName === coin.fullName) {
+        if (editCoin.fullName === coin.fullName) {
           return editCoin;
         } else {
           return coin;
         }
       });
+    },
+  },
+  watch: {
+    port: {
+      handler(newValue) {
+        localStorage.setItem("port", JSON.stringify(newValue));
+      },
+      deep: true,
     },
   },
 };
@@ -121,9 +117,9 @@ export default {
   font-family: "Kanit", sans-serif;
   font-weight: 400;
 }
-main{
-    max-width: 800px;
-    margin: 0 auto;
+main {
+  max-width: 800px;
+  margin: 0 auto;
 }
 button {
   padding: 10px 20px;
@@ -139,6 +135,6 @@ button:hover {
   cursor: pointer;
 }
 .button-box {
-  float: right;;
+  float: right;
 }
 </style>

@@ -38,6 +38,7 @@ export default {
   },
   methods: {
     summitForm() {
+      console.log("summitForm called", this.newCoin);
       this.$emit("submit", this.newCoin);
     },
     closeForm() {
