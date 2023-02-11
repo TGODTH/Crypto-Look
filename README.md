@@ -1,7 +1,17 @@
-# learn-vue-project
+# Crypto Look
 
-https://mycryptolook.netlify.app/
+## Project for learning Vue.js (Crypto portfolio)
+ ### Visit latest version of the website with [this link.](https://mycryptolook.netlify.app/)
+ (fetch data from [Binance](https://api.binance.com))
+ #### Features
+ * Can be added new coins.
+ * Store coins data in local storage.
+ #### User guide
+ * 'Custom name' can be anything.
+ * 'Coin pair' is used for fetching data from Binance so it should available in binance ex. BTCUSDT, ETHUSDT.
+ * 'Coin amout' is coin amount for calculation.
 
+# For developers
 ## Project Setup
 
 ```sh
@@ -19,3 +29,4 @@ npm run dev
 ```sh
 npm run build
 ```
+

@@ -3,7 +3,7 @@
     <PortTable :datas="{ ...data }"></PortTable>
     <div class="button-box">
       <button @click="fetchData">Fetch data</button>
-      <button @click="togglePrompt">Add data</button>
+      <button @click="togglePrompt">Add coin</button>
     </div>
   </main>
   <PromptBox @submit="addData" @close="togglePrompt" v-if="openedPrompt" />

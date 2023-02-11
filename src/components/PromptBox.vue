@@ -7,7 +7,7 @@
         name="nickname"
         id="nickname"
         v-model="newCoin.nickName"
-      /><label for="fullname">Coin fullname</label
+      /><label for="fullname">Coin pair</label
       ><input
         type="text"
         name="fullname"
