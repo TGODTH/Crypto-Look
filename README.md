@@ -2,7 +2,7 @@
 
 ## Project for learning Vue.js (Crypto portfolio)
  ### Visit latest version of the website with [this link.](https://mycryptolook.netlify.app/)
- (fetch data from [Binance](https://api.binance.com))
+ (fetch data from [Binance.](https://api.binance.com))
  #### Features
  * Can be added new coins.
  * Store coins data in local storage.
